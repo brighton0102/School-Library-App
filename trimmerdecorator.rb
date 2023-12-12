@@ -1,4 +1,4 @@
-require_relative 'basedecorator'
+require_relative 'basedecorator' # rubocop:disable Layout/EndOfLine
 
 class TrimmerDecorator < BaseDecorator
   def correct_name
