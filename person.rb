@@ -1,4 +1,4 @@
-require_relative 'nameable' # rubocop:disable Layout/EndOfLine
+require_relative 'nameable'
 require_relative 'capitalizedecorator'
 require_relative 'trimmerdecorator'
 

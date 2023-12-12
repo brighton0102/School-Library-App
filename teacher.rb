@@ -1,4 +1,4 @@
-class Teacher < Person # rubocop:disable Layout/EndOfLine
+class Teacher < Person
   def initialize(specialization:, name: 'Unknown', age: 0, parent_permission: true)
     super(name, age, parent_permission)
     @specialization = specialization

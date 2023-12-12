@@ -1,4 +1,4 @@
-class Student < Person # rubocop:disable Layout/EndOfLine
+class Student < Person
   attr_reader :classroom
 
   def initialize(classroom:, name: 'Unknown', age: 0, parent_permission: true)
