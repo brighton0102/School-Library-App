@@ -65,24 +65,39 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
--A Git hub account
-
--Visual Studio Code or any other code editor of your preference
-
--web browser
+-VScode 
+-Installed Ruby
 
 ### Setup
 
 Clone this repository to your desired folder:
 
 ```sh
-cd School_Library
-git https://github.com/brighton0102/School-Library-App
+  https://github.com/brighton0102/School-Library-App.git
+```
+
+### Install
+
+Install this project with:
+
+```sh
+  cd OOP-School-Library
+  bundle install
+```
+
+### Usage
+
+To run the project, execute the following command in your terminal:
+
+
+```sh
+ruby main.rb
 ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
+
 
 ## 👥 Authors <a name="authors"></a>
 
