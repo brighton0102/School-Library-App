@@ -16,8 +16,7 @@ class App
   def list_all_books
     puts "\nList of Books. \n"
     @books.each do |book|
-      puts "title: #{book.title} by author : #
-        {book.author}"
+      puts "title: #{book.title} by author : #{book.author}"
     end
     puts "\n"
   end
