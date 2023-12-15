@@ -25,11 +25,9 @@ class App
     puts "\n"
     @persons.each do |person|
       if person.instance_of?(Teacher)
-        puts "[Teacher]Age: #{person.age} Name: #{person.name}, ID: #
-                {person.id}"
+        puts "[Teacher]Age: #{person.age} Name: #{person.name}, ID: #{person.id}"
       else
-        puts "[Student]Age: #{person.age},Name: #{person.name}, ID: #
-                {person.id}"
+        puts "[Student]Age: #{person.age},Name: #{person.name}, ID: #{person.id}"
       end
     end
     puts "\n"
@@ -96,11 +94,13 @@ class App
   end
 
   def list_all_rentals
-    print "\nID of person"
+    print "\nID of person:"
     input_person_id = gets.chomp.to_i
     puts 'Rentals'
     @rentals.each do |rental|
-      puts "Date: #{rental.date}, Book: #{rental.book.title}" if rental.person.id == input_person_id
+      if rental.person.id == input_person_id
+        puts "Date: #{rental.date}, Book: #{rental.book.title}, Author: #{rental.book.author}"
+      end
     end
     puts "\n"
   end
