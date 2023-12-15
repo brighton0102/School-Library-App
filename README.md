@@ -106,6 +106,15 @@ ruby main.rb
 - GitHub: [brighton0102](htpps://github.com/brighton0102)
 - Twitter: [@brighton_ui](https://twitter.com/brighton_ui)
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- FUTURE FEATURES -->
+
+## 🔭 Future Features <a name="future-features"></a>
+
+- **Add function that shows if a book is currently in the library or if it is still borrowed**
+
+- **Add a function to outstanding books and penalties if books are brought back late**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
