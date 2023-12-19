@@ -9,4 +9,8 @@ class Rental
     person.rentals << self
     book.rentals << self
   end
+
+  def print
+    puts "Date: #{date}, Book: #{book.title}"
+  end
 end

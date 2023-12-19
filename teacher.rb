@@ -9,4 +9,8 @@ class Teacher < Person
   def can_use_services?
     true
   end
+
+  def print
+    puts "[Teacher] Name: #{name}, ID: #{id}, Age: #{age}"
+  end
 end

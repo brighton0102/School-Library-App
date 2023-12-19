@@ -29,15 +29,16 @@ def choose_number(choice, app)
 end
 
 def main
-  my_app = App.new
+  app = App.new
 
   loop do
     render_choices
-    choice = gets.to_i
-
-    break if choice == 7
-
-    choose_number(choice, my_app)
+    choice = gets.chomp.to_i
+    if choice >= 7
+      puts 'Thank you for using this app'
+      break
+    end
+    choose_number(choice, app)
   end
 end
 
