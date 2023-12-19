@@ -4,6 +4,64 @@ require_relative 'teacher'
 require_relative 'rental'
 require_relative 'person'
 
+class InputHandler
+  def self.request_person_type
+    print "\nDo you want to add a student (1) or a teacher (2)? [Insert the number]: "
+    gets.chomp.strip.to_i
+  end
+
+  def self.request_age
+    print 'Age: '
+    gets.chomp.to_i
+  end
+
+  def self.request_name
+    print 'Name: '
+    gets.chomp
+  end
+
+  def self.request_permission
+    print 'Has Parent Permission [Y/N]: '
+    gets.chomp.downcase == 'y'
+  end
+
+  def self.request_teacher_specialization
+    print 'Specialization: '
+    gets.chomp
+  end
+
+  def self.request_book_name
+    print "\nBook: "
+    gets.chomp
+  end
+
+  def self.request_author_name
+    print 'Author: '
+    gets.chomp
+  end
+
+  def self.request_rental_date
+    print 'Enter Rental Date (yyyy-mm-dd): '
+    gets.chomp
+  end
+
+  def self.request_person_index(persons)
+    print "Select a person from the following list by number (not ID)\n"
+    persons.each_with_index do |person, index|
+      puts "#{index}) Name: #{person.name} ID: #{person.id} Age: #{person.age}"
+    end
+    gets.chomp.to_i
+  end
+
+  def self.request_book_index(books)
+    puts "\nSelect a book from the following list by number"
+    books.each_with_index do |book, index|
+      puts "#{index}) Title: #{book.title}, Author: #{book.author}"
+    end
+    gets.chomp.to_i
+  end
+end
+
 class App
   attr_accessor :books, :person, :rentals
 
@@ -15,40 +73,41 @@ class App
 
   def list_all_books
     puts "\nList of Books. \n"
-    @books.each do |book|
-      puts "title: #{book.title} by author : #{book.author}"
-    end
-    puts "\n"
+    @books.each(&:print)
   end
+  puts "\n"
 
   def list_all_people
     puts "\n"
-    @persons.each do |person|
-      if person.instance_of?(Teacher)
-        puts "[Teacher]Age: #{person.age} Name: #{person.name}, ID: #{person.id}"
-      else
-        puts "[Student]Age: #{person.age},Name: #{person.name}, ID: #{person.id}"
-      end
-    end
+
+    @persons.each(&:print)
+    puts "\n"
+  end
+
+  def list_all_rentals
+    person_index = InputHandler.request_person_index(@persons)
+    person = @persons[person_index]
+    rentals = @rentals.select { |r| r.person == person }
+
+    puts 'Rentals'
+    rentals.each(&:print)
     puts "\n"
   end
 
   def create_a_person
-    print "\nDo you want to add a student (1) or a teacher (2)? [Insert the number]: "
-    is_student = gets.chomp.strip.to_i
-    print 'age: '
-    age = gets.chomp.to_i
-    print 'Name: '
-    name = gets.chomp
-    case is_student
+    person_type = InputHandler.request_person_type
+    age = InputHandler.request_age
+    name = InputHandler.request_name
+
+    case person_type
     when 1
-      print 'Has Parent Permission [Y/N]: '
-      permission = gets.chomp.downcase == 'y'
+      permission = InputHandler.request_permission
       create_student(age, name, permission)
     when 2
-      create_teacher(age, name)
+      specialization = InputHandler.request_teacher_specialization
+      create_teacher(age, name, specialization)
     end
-    print "Person added Successfully. \n"
+    puts "Person added Successfully. \n"
     $stdout.flush
   end
 
@@ -57,63 +116,26 @@ class App
     name)
   end
 
-  def create_teacher(age, name)
-    puts 'Specialization: '
-    specialization = gets.chomp
+  def create_teacher(age, name, specialization)
     @persons << Teacher.new(age, specialization, name: name)
   end
 
   def add_new_book
-    print "\nBook: "
-    book_name = gets.chomp
-    print 'Author: '
-    author_name = gets.chomp
+    book_name = InputHandler.request_book_name
+    author_name = InputHandler.request_author_name
     @books << Book.new(book_name, author_name)
     puts "Book added successfully.\n"
     $stdout.flush
   end
 
   def add_rental
-    puts "\nSelect a book from the following list by number"
-    @books.each_with_index do |book, index|
-      puts "#{index}) Title: #{book.title}, Author: #{book.author}"
-    end
-    book_index = gets.chomp.to_i
+    book_index = InputHandler.request_book_index(@books)
     select_book = @books[book_index]
-    print "Select a person from the following list by number (not ID)\n"
-    @persons.each_with_index do |person, index|
-      puts "#{index}) Name: #{person.name} ID: #{person.id} Age: #{person.age}"
-    end
-    person_index = gets.chomp.to_i
+    person_index = InputHandler.request_person_index(@persons)
     select_person = @persons[person_index]
-    print 'Enter Rental Date (yyyy-mm-dd)'
-    date = gets.chomp
+    date = InputHandler.request_rental_date
     @rentals.push(Rental.new(date, select_person, select_book))
     puts "rental added successfully.\n"
     $stdout.flush
-  end
-
-  def list_all_rentals
-    print "\nID of person:"
-    input_person_id = gets.chomp.to_i
-    puts 'Rentals'
-    @rentals.each do |rental|
-      if rental.person.id == input_person_id
-        puts "Date: #{rental.date}, Book: #{rental.book.title}, Author: #{rental.book.author}"
-      end
-    end
-    puts "\n"
-  end
-
-  def show
-    loop do
-      render_choices
-      choice = gets.chomp.to_i
-      if choice >= 7
-        puts 'Thank you for using this app'
-        break
-      end
-      choose_number(choice)
-    end
   end
 end
