@@ -157,7 +157,7 @@ class App
         { name: person.name, age: person.age, type: 'Teacher', specialization: person.specialization }
       end
     end
-    file = File.open('data/person.json', 'w')
+    file = File.open('data/persons.json', 'w')
     file.puts(data.to_json)
     file.close
   end
