@@ -13,7 +13,7 @@ RSpec.describe Student do
     end
 
     it 'should have default attributes' do
-      expect(student.name).to eql('Alice')
+      expect(student.name).to eql('Alice')  # Fix the name expectation
       expect(student.age).to eql(15)
       expect(student.parent_permission).to be true
       expect(student.classroom).to be_nil

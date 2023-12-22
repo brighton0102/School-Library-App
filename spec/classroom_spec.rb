@@ -1,7 +1,7 @@
 require_relative '../classroom'
 require_relative '../student'
 
-Rspect.describe Classroom do
+RSpec.describe Classroom do
   before :each do
     @classroom = Classroom.new('Backend')
   end
@@ -19,11 +19,11 @@ Rspect.describe Classroom do
   end
 
   describe '#students' do
-    it 'should `be 2 student inside' do
+    it 'should be 2 student inside' do
       ichsan = Student.new(12, parent_permission: true, name: 'Ichsan')
       kamran = Student.new(12, parent_permission: true, name: 'Kamran')
-      @classroom.add_students(ichsan)
-      @classroom.add_students(kamran)
+      @classroom.add_student(ichsan)
+      @classroom.add_student(kamran)
       expect(@classroom.students.length).to eql(2)
     end
   end

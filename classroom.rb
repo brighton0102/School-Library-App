@@ -3,10 +3,10 @@ class Classroom
 
   def initialize(label)
     @label = label
-    @student = []
+    @students = [] # Fix the variable name to be plural
   end
 
-  def add_students(student)
+  def add_student(student)
     students << student
     student.classroom = self
   end

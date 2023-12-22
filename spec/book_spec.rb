@@ -1,7 +1,7 @@
 require_relative '../book'
 
 RSpec.describe Book do
-  let(:book) { Book.new('Simple Book', 'John Doe') }
+  let(:book) { Book.new('Sample Book', 'John Doe') }
 
   describe '#new' do
     it 'should be an instance of Book' do

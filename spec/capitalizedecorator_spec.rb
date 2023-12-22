@@ -10,14 +10,14 @@ describe CapitalizeDecorator do
     end
 
     it 'should inherit from BaseDecorator' do
-      expected(capitalize_decorator).to be_a(BaseDecorator)
+      expect(capitalize_decorator).to be_a(BaseDecorator)
     end
   end
 
   describe '#correct_name' do
-    it 'should return the correctrly capitalized name' do
-      allow(nameable).to recieve(:correct_name).and_return('ichsan')
-      expect(capitalize_decorator.correct_name).to eql(Ichsan)
+    it 'should return the correctly capitalized name' do
+      allow(nameable).to receive(:correct_name).and_return('ichsan')
+      expect(capitalize_decorator.correct_name).to eql('Ichsan')
     end
   end
 end
